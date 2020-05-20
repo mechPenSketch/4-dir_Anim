@@ -1,14 +1,143 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://spritesheet.png" type="Texture" id=1]
 [ext_resource path="res://FourDirSheet.gd" type="Script" id=2]
 
+[sub_resource type="CircleShape2D" id=1]
+radius = 12.0
+
+[sub_resource type="Animation" id=4]
+resource_name = "Dancing"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:action_frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 3, 4, 3, 5 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Down"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:side")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Idle"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:action_frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "Left"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:side")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 3 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "Right"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:side")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "Up"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:side")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 2 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Walking"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:action_frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 0, 2, 0 ]
+}
+
 [node name="Node2D" type="Node2D"]
 
-[node name="size_32" type="Sprite" parent="."]
+[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
 position = Vector2( 518, 244 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="KinematicBody2D"]
 texture = ExtResource( 1 )
 vframes = 8
 hframes = 4
+frame = 3
 script = ExtResource( 2 )
 vframes_per_side = 2
+action_frame = 3
+is_symmetrical = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="KinematicBody2D"]
+anims/Dancing = SubResource( 4 )
+anims/Down = SubResource( 5 )
+anims/Idle = SubResource( 2 )
+anims/Left = SubResource( 7 )
+anims/Right = SubResource( 6 )
+anims/Up = SubResource( 8 )
+anims/Walking = SubResource( 3 )
+
+[node name="AnimationTree" type="AnimationTree" parent="KinematicBody2D"]
