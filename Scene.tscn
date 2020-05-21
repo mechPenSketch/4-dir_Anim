@@ -1,14 +1,16 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://spritesheet.png" type="Texture" id=1]
 [ext_resource path="res://FourDirSheet.gd" type="Script" id=2]
+[ext_resource path="res://RedSquare.gd" type="Script" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 12.0
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=2]
 resource_name = "Dancing"
 length = 2.0
+loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:action_frame")
 tracks/0/interp = 1
@@ -22,8 +24,9 @@ tracks/0/keys = {
 "values": [ 3, 4, 3, 5 ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=3]
 resource_name = "Down"
+loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:side")
 tracks/0/interp = 1
@@ -37,8 +40,8 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "Idle"
+[sub_resource type="Animation" id=4]
+loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:action_frame")
 tracks/0/interp = 1
@@ -52,8 +55,9 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=5]
 resource_name = "Left"
+loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:side")
 tracks/0/interp = 1
@@ -69,6 +73,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=6]
 resource_name = "Right"
+loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:side")
 tracks/0/interp = 1
@@ -82,8 +87,9 @@ tracks/0/keys = {
 "values": [ 1 ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=7]
 resource_name = "Up"
+loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:side")
 tracks/0/interp = 1
@@ -97,9 +103,9 @@ tracks/0/keys = {
 "values": [ 2 ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "Walking"
+[sub_resource type="Animation" id=8]
 length = 2.0
+loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:action_frame")
 tracks/0/interp = 1
@@ -113,31 +119,124 @@ tracks/0/keys = {
 "values": [ 1, 0, 2, 0 ]
 }
 
+[sub_resource type="AnimationNodeAnimation" id=9]
+animation = "Dancing"
+
+[sub_resource type="AnimationNodeAnimation" id=10]
+animation = "Idle"
+
+[sub_resource type="AnimationNodeAnimation" id=11]
+animation = "Walking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=12]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=14]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=15]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+
+[sub_resource type="AnimationNodeStateMachine" id=18]
+states/Dancing/node = SubResource( 9 )
+states/Dancing/position = Vector2( 759, 116 )
+states/Idle/node = SubResource( 10 )
+states/Idle/position = Vector2( 387, 116 )
+states/Walking/node = SubResource( 11 )
+states/Walking/position = Vector2( 571, 334 )
+transitions = [ "Idle", "Dancing", SubResource( 12 ), "Dancing", "Idle", SubResource( 13 ), "Idle", "Walking", SubResource( 14 ), "Walking", "Idle", SubResource( 15 ), "Walking", "Dancing", SubResource( 16 ), "Dancing", "Walking", SubResource( 17 ) ]
+start_node = "Idle"
+
+[sub_resource type="AnimationNodeAdd2" id=36]
+
+[sub_resource type="AnimationNodeAnimation" id=20]
+animation = "Down"
+
+[sub_resource type="AnimationNodeAnimation" id=21]
+animation = "Left"
+
+[sub_resource type="AnimationNodeAnimation" id=22]
+animation = "Right"
+
+[sub_resource type="AnimationNodeAnimation" id=23]
+animation = "Up"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=24]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=25]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=26]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=27]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=28]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=29]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=30]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=31]
+
+[sub_resource type="AnimationNodeStateMachine" id=32]
+states/Down/node = SubResource( 20 )
+states/Down/position = Vector2( 698, 406 )
+states/Left/node = SubResource( 21 )
+states/Left/position = Vector2( 351, 225 )
+states/Right/node = SubResource( 22 )
+states/Right/position = Vector2( 1055, 225 )
+states/Up/node = SubResource( 23 )
+states/Up/position = Vector2( 698, 49 )
+transitions = [ "Left", "Up", SubResource( 24 ), "Up", "Left", SubResource( 25 ), "Down", "Left", SubResource( 26 ), "Left", "Down", SubResource( 27 ), "Down", "Right", SubResource( 28 ), "Right", "Down", SubResource( 29 ), "Right", "Up", SubResource( 30 ), "Up", "Right", SubResource( 31 ) ]
+start_node = "Down"
+graph_offset = Vector2( 161, 202 )
+
+[sub_resource type="AnimationNodeBlendTree" id=33]
+graph_offset = Vector2( -686, 85.5 )
+nodes/Actions/node = SubResource( 18 )
+nodes/Actions/position = Vector2( -280, 340 )
+nodes/Add2/node = SubResource( 36 )
+nodes/Add2/position = Vector2( 20, 160 )
+nodes/Sides/node = SubResource( 32 )
+nodes/Sides/position = Vector2( -280, 140 )
+node_connections = [ "output", 0, "Add2", "Add2", 0, "Sides", "Add2", 1, "Actions" ]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=34]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=35]
+
 [node name="Node2D" type="Node2D"]
 
-[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+[node name="RedSquare" type="KinematicBody2D" parent="."]
 position = Vector2( 518, 244 )
+script = ExtResource( 3 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RedSquare"]
 shape = SubResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="KinematicBody2D"]
+[node name="Sprite" type="Sprite" parent="RedSquare"]
 texture = ExtResource( 1 )
 vframes = 8
 hframes = 4
-frame = 3
 script = ExtResource( 2 )
 vframes_per_side = 2
-action_frame = 3
 is_symmetrical = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="KinematicBody2D"]
-anims/Dancing = SubResource( 4 )
-anims/Down = SubResource( 5 )
-anims/Idle = SubResource( 2 )
-anims/Left = SubResource( 7 )
+[node name="AnimationPlayer" type="AnimationPlayer" parent="RedSquare"]
+anims/Dancing = SubResource( 2 )
+anims/Down = SubResource( 3 )
+anims/Idle = SubResource( 4 )
+anims/Left = SubResource( 5 )
 anims/Right = SubResource( 6 )
-anims/Up = SubResource( 8 )
-anims/Walking = SubResource( 3 )
+anims/Up = SubResource( 7 )
+anims/Walking = SubResource( 8 )
 
-[node name="AnimationTree" type="AnimationTree" parent="KinematicBody2D"]
+[node name="AnimationTree" type="AnimationTree" parent="RedSquare"]
+tree_root = SubResource( 33 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/Actions/playback = SubResource( 34 )
+parameters/Add2/add_amount = 1.0
+parameters/Sides/playback = SubResource( 35 )
