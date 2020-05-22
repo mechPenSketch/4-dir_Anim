@@ -1,9 +1,9 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=44 format=2]
 
-[ext_resource path="res://spritesheet.png" type="Texture" id=1]
-[ext_resource path="res://FourDirSheet.gd" type="Script" id=2]
-[ext_resource path="res://RedSquare.gd" type="Script" id=3]
-[ext_resource path="res://FourDirAnimTree.gd" type="Script" id=4]
+[ext_resource path="res://four-dir/FourDirSheet.gd" type="Script" id=1]
+[ext_resource path="res://four-dir/FourDirAnimTree.gd" type="Script" id=2]
+[ext_resource path="res://example/RedSquare.gd" type="Script" id=3]
+[ext_resource path="res://example/spritesheet.png" type="Texture" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 12.0
@@ -181,7 +181,15 @@ animation = "Up"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=31]
 
-[sub_resource type="AnimationNodeStateMachine" id=32]
+[sub_resource type="AnimationNodeStateMachineTransition" id=32]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=33]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=34]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=35]
+
+[sub_resource type="AnimationNodeStateMachine" id=36]
 states/Down/node = SubResource( 20 )
 states/Down/position = Vector2( 698, 406 )
 states/Left/node = SubResource( 21 )
@@ -190,39 +198,42 @@ states/Right/node = SubResource( 22 )
 states/Right/position = Vector2( 1055, 225 )
 states/Up/node = SubResource( 23 )
 states/Up/position = Vector2( 698, 49 )
-transitions = [ "Left", "Up", SubResource( 24 ), "Up", "Left", SubResource( 25 ), "Down", "Left", SubResource( 26 ), "Left", "Down", SubResource( 27 ), "Down", "Right", SubResource( 28 ), "Right", "Down", SubResource( 29 ), "Right", "Up", SubResource( 30 ), "Up", "Right", SubResource( 31 ) ]
+transitions = [ "Left", "Up", SubResource( 24 ), "Up", "Left", SubResource( 25 ), "Down", "Left", SubResource( 26 ), "Left", "Down", SubResource( 27 ), "Down", "Right", SubResource( 28 ), "Right", "Down", SubResource( 29 ), "Right", "Up", SubResource( 30 ), "Up", "Right", SubResource( 31 ), "Left", "Right", SubResource( 32 ), "Right", "Left", SubResource( 33 ), "Up", "Down", SubResource( 34 ), "Down", "Up", SubResource( 35 ) ]
 start_node = "Down"
-graph_offset = Vector2( 161, 202 )
+graph_offset = Vector2( -18, 48 )
 
-[sub_resource type="AnimationNodeBlendTree" id=33]
-graph_offset = Vector2( -569, 260 )
+[sub_resource type="AnimationNodeBlendTree" id=37]
+graph_offset = Vector2( -443, 87 )
 nodes/Actions/node = SubResource( 18 )
 nodes/Actions/position = Vector2( -280, 340 )
 nodes/AddActions/node = SubResource( 19 )
 nodes/AddActions/position = Vector2( 20, 160 )
-nodes/Sides/node = SubResource( 32 )
+nodes/Sides/node = SubResource( 36 )
 nodes/Sides/position = Vector2( -280, 140 )
 node_connections = [ "output", 0, "AddActions", "AddActions", 0, "Sides", "AddActions", 1, "Actions" ]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=34]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=38]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=35]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=39]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="RedSquare" type="KinematicBody2D" parent="."]
-position = Vector2( 518, 244 )
+position = Vector2( 227.999, 147 )
 script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RedSquare"]
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="RedSquare"]
-texture = ExtResource( 1 )
+texture = ExtResource( 4 )
 vframes = 8
 hframes = 4
-script = ExtResource( 2 )
+script = ExtResource( 1 )
 vframes_per_side = 2
+side = 0
+action_frame = 0
+action_frame_coord = Vector2( 0, 0 )
 is_symmetrical = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="RedSquare"]
@@ -235,10 +246,10 @@ anims/Up = SubResource( 7 )
 anims/Walking = SubResource( 8 )
 
 [node name="AnimationTree" type="AnimationTree" parent="RedSquare"]
-tree_root = SubResource( 33 )
+tree_root = SubResource( 37 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/Actions/playback = SubResource( 34 )
+parameters/Actions/playback = SubResource( 38 )
 parameters/AddActions/add_amount = 1.0
-parameters/Sides/playback = SubResource( 35 )
-script = ExtResource( 4 )
+parameters/Sides/playback = SubResource( 39 )
+script = ExtResource( 2 )
