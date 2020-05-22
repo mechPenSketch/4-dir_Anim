@@ -1,15 +1,15 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://spritesheet.png" type="Texture" id=1]
 [ext_resource path="res://FourDirSheet.gd" type="Script" id=2]
 [ext_resource path="res://RedSquare.gd" type="Script" id=3]
+[ext_resource path="res://FourDirAnimTree.gd" type="Script" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 12.0
 
 [sub_resource type="Animation" id=2]
 resource_name = "Dancing"
-length = 2.0
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:action_frame")
@@ -18,7 +18,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 1, 1.5 ),
+"times": PoolRealArray( 0, 0.2, 0.5, 0.7 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 3, 4, 3, 5 ]
@@ -104,7 +104,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=8]
-length = 2.0
+length = 1.5
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:action_frame")
@@ -113,7 +113,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 1, 1.5 ),
+"times": PoolRealArray( 0, 0.4, 0.8, 1.2 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 1, 0, 2, 0 ]
@@ -149,8 +149,9 @@ states/Walking/node = SubResource( 11 )
 states/Walking/position = Vector2( 571, 334 )
 transitions = [ "Idle", "Dancing", SubResource( 12 ), "Dancing", "Idle", SubResource( 13 ), "Idle", "Walking", SubResource( 14 ), "Walking", "Idle", SubResource( 15 ), "Walking", "Dancing", SubResource( 16 ), "Dancing", "Walking", SubResource( 17 ) ]
 start_node = "Idle"
+graph_offset = Vector2( -43, 64 )
 
-[sub_resource type="AnimationNodeAdd2" id=36]
+[sub_resource type="AnimationNodeAdd2" id=19]
 
 [sub_resource type="AnimationNodeAnimation" id=20]
 animation = "Down"
@@ -194,14 +195,14 @@ start_node = "Down"
 graph_offset = Vector2( 161, 202 )
 
 [sub_resource type="AnimationNodeBlendTree" id=33]
-graph_offset = Vector2( -686, 85.5 )
+graph_offset = Vector2( -569, 260 )
 nodes/Actions/node = SubResource( 18 )
 nodes/Actions/position = Vector2( -280, 340 )
-nodes/Add2/node = SubResource( 36 )
-nodes/Add2/position = Vector2( 20, 160 )
+nodes/AddActions/node = SubResource( 19 )
+nodes/AddActions/position = Vector2( 20, 160 )
 nodes/Sides/node = SubResource( 32 )
 nodes/Sides/position = Vector2( -280, 140 )
-node_connections = [ "output", 0, "Add2", "Add2", 0, "Sides", "Add2", 1, "Actions" ]
+node_connections = [ "output", 0, "AddActions", "AddActions", 0, "Sides", "AddActions", 1, "Actions" ]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=34]
 
@@ -238,5 +239,6 @@ tree_root = SubResource( 33 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/Actions/playback = SubResource( 34 )
-parameters/Add2/add_amount = 1.0
+parameters/AddActions/add_amount = 1.0
 parameters/Sides/playback = SubResource( 35 )
+script = ExtResource( 4 )
