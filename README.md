@@ -21,4 +21,4 @@ The script can be attached to the Sprite node. With it, you can set the side and
 * mechPenSketch
 
 ## License
-(To be added)
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
