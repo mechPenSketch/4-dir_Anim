@@ -22,7 +22,7 @@ func _physics_process(delta):
 	pass
 
 func _input(event):
-	if event is InputEventKey or event is InputEventJoypadButton:
+	if event is InputEventKey:
 		# MOVEMENT
 		if !is_busy:
 			if event.is_action("ui_left") or event.is_action("ui_right"):
@@ -46,20 +46,6 @@ func _input(event):
 		elif event.is_action_released("ui_select"):
 			is_busy = false
 			emit_signal("business", is_busy)
-
-	elif event is InputEventJoypadMotion:
-		if !is_busy:
-			if event.is_action("ui_left"):
-				if event.get_action_strength("ui_left"):
-					direction_v.x = -event.get_action_strength("ui_left")
-				else:
-					direction_v.x = event.get_action_strength("ui_right")
-			elif event.is_action("ui_up"):
-				if event.get_action_strength("ui_up"):
-					direction_v.y = -event.get_action_strength("ui_up")
-				else:
-					direction_v.y = event.get_action_strength("ui_down")
-			emit_signal("moving", direction_v)
 	pass
 
 func _on_moving(direction:Vector2):
