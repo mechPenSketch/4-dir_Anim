@@ -31,14 +31,28 @@ func set_side(i):
 	pass
 
 func set_action_frame(i):
-	action_frame = i
+	var base = i
+	base = clamp_frame(base, vframes_per_side * hframes)
+	action_frame = base
 	calc_frame()
 	pass
 
 func set_action_frame_coord(v2):
-	set_action_frame(v2.y * get_hframes() + v2.x)
+	var base = v2
+	base.x = clamp_frame(base.x, hframes)
+	base.y = clamp_frame(base.y, vframes_per_side)
+	action_frame_coord = base
+	set_action_frame(base.y * get_hframes() + base.x)
 	pass
 
 func calc_frame():
 	frame = hframes * vframes_per_side * side + action_frame
+	pass
+
+func clamp_frame(frm:int, fexd:int)->int:
+	if frm < 0:
+		return 0
+	elif frm >= fexd:
+		return fexd - 1
+	return frm
 	pass
