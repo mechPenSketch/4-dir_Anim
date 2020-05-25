@@ -17,6 +17,9 @@ Arrow keys to move, Space to dance.
 ### Applicability
 The script can be attached to the Sprite node. With it, you can set the side and action frame parameters seperately for animation.
 
+### See Also
+The [wiki](https://github.com/mechPenSketch/4-dir_Anim/wiki)(WIP), for more info on how it works and how to use it.
+
 ## Author
 * mechPenSketch
 
