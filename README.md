@@ -20,6 +20,11 @@ The script can be attached to the Sprite node. With it, you can set the side and
 ### See Also
 The [wiki](https://github.com/mechPenSketch/4-dir_Anim/wiki)(WIP), for more info on how it works and how to use it.
 
+## Contribution
+If you find this helpful, please support me financially so that I can earn a living making Godot Assets:
+
+[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/I3I1208SA)
+
 ## Author
 * mechPenSketch
 
