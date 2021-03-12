@@ -1,6 +1,7 @@
+tool
 extends Sprite
 
-tool
+class_name DirSprite, "dir_sprite.svg"
 
 enum SIDES{
 	DOWN,

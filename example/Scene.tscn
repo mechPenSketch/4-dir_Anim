@@ -1,8 +1,8 @@
 [gd_scene load_steps=44 format=2]
 
-[ext_resource path="res://four-dir/FourDirSheet.gd" type="Script" id=1]
-[ext_resource path="res://four-dir/FourDirAnimTree.gd" type="Script" id=2]
-[ext_resource path="res://example/RedSquare.gd" type="Script" id=3]
+[ext_resource path="res://four-dir/dir_sprite.gd" type="Script" id=1]
+[ext_resource path="res://four-dir/four_dir_anim_tee.gd" type="Script" id=2]
+[ext_resource path="res://example/red_square.gd" type="Script" id=3]
 [ext_resource path="res://example/spritesheet.png" type="Texture" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
@@ -231,6 +231,9 @@ vframes = 8
 hframes = 4
 script = ExtResource( 1 )
 vframes_per_side = 2
+side = 0
+action_frame = 0
+action_frame_coord = Vector2( 0, 0 )
 is_symmetrical = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="RedSquare"]

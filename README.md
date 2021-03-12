@@ -15,15 +15,14 @@ The scene contains a red square. It can walk around and boogie on the spot!
 Arrow keys to move, Space to dance.
 
 ### Applicability
-The script can be attached to the Sprite node. With it, you can set the side and action frame parameters seperately for animation.
+The script `dir_sprite.gd` can be attached to the Sprite node. With it, you can set the side and action frame parameters seperately for animation.
+
+If you want to move `dir_sprite.gd` to your project, be sure to move `dir_sprite.svg` into the same folder too. Otherwise, you need to change or remove the path to its icon at `dir_sprite.gd`'s line 4.
+
+You may edit the enum on `dir_sprite.gd`'s line 6 if you plan for a different set of directions.
 
 ### See Also
-The [wiki](https://github.com/mechPenSketch/4-dir_Anim/wiki)(WIP), for more info on how it works and how to use it.
-
-## Contribution
-If you find this helpful, please support me financially so that I can earn a living making Godot Assets:
-
-[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/I3I1208SA)
+The [wiki](https://github.com/mechPenSketch/4-dir_Anim/wiki), for more info on how it works and how to use it.
 
 ## Author
 * mechPenSketch
